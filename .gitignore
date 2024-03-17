@@ -160,3 +160,12 @@ buildNumber.properties
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,maven
+/.idea/vcs.xml
+/mvnw.cmd
+/.idea/misc.xml
+/.idea/compiler.xml
+/.mvn/wrapper/maven-wrapper.properties
+/mvnw
+/.idea/.gitignore
+/.idea/encodings.xml
+/.idea/jarRepositories.xml
