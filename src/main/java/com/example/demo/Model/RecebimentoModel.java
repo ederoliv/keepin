@@ -3,28 +3,33 @@ package com.example.demo.Model;
 import com.example.demo.MainApplication;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 import static java.lang.Integer.*;
 
 public class RecebimentoModel {
 
+    /*
     private String fornecedor, material, numeroLote;
     private LocalDate dataRecebimento;
     private int quantidade;
 
     //private recebidoPor
 
-    public static void insereRecebimento (String codigoFornecedor, String material, String quantidade, String numeroLote) {
+     */
 
-        try(Connection connection = DriverManager.getConnection("jdbc:ucanaccess://G://Meu Drive//Projetos//Projeto Supp//supp-project//src//main//resources//supp_db.accdb")) {
+    public static void insereRecebimento (String codigoFornecedor, String material, Date dataRecebimento,String quantidade, String numeroLote) {
 
-            String sqlQuery = "INSERT into Recebimento (cod_for)" +
-                    "VALUES (?)";
+        try(Connection connection = DriverManager.getConnection(MainApplication.DATABASE_URL)) {
+
+            String sqlQuery = "INSERT into Recebimento (cod_for, cod_mat, dt_recebimento)" +
+                    "VALUES (?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
             preparedStatement.setInt(1, parseInt(codigoFornecedor));
+            preparedStatement.setString(2, material);
+            preparedStatement.setDate(3, dataRecebimento);
+
 
             int row = preparedStatement.executeUpdate();
 

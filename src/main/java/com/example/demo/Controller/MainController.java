@@ -6,6 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class MainController {
@@ -22,14 +23,15 @@ private ComboBox<String> comboBoxRecebidoPor;
 
         LocalDate localDate = datePickerDataRecebimento.getValue();
 
-        //System.out.println(textFieldFornecedor.getText() + " " + localDate.toString() + " " +
-            //     textFieldMaterial.getText() + " " + textFieldQuantidade.getText() + " " + textFieldNumeroLote.getText());
+        Date dataSQL = Date.valueOf(localDate);
+
+        System.out.println(dataSQL);
 
         if(textFieldFornecedor.getText().isEmpty() || localDate.toString().isEmpty() || textFieldMaterial.getText().isEmpty() || textFieldQuantidade.getText().isEmpty() || textFieldNumeroLote.getText().isEmpty())
         {
             System.out.println("Todos os campos devem ser preenchidos!");
-        }else { RecebimentoModel.insereRecebimento(textFieldFornecedor.getText(), textFieldMaterial.getText(), textFieldQuantidade.getText(), textFieldNumeroLote.getText()); }
-        //String codigoFornecedor, String material, String quantidade, String numeroLote
+        }else { RecebimentoModel.insereRecebimento(textFieldFornecedor.getText(), textFieldMaterial.getText(), dataSQL,textFieldQuantidade.getText(), textFieldNumeroLote.getText()); }
+
 
 
 
