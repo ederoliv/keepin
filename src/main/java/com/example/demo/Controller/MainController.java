@@ -20,20 +20,16 @@ private ComboBox<String> comboBoxRecebidoPor;
     @FXML
     public void salvaRecebimento() {
 
-
-        LocalDate localDate = datePickerDataRecebimento.getValue();
-
-        Date dataSQL = Date.valueOf(localDate);
-
-        System.out.println(dataSQL);
-
-        if(textFieldFornecedor.getText().isEmpty() || localDate.toString().isEmpty() || textFieldMaterial.getText().isEmpty() || textFieldQuantidade.getText().isEmpty() || textFieldNumeroLote.getText().isEmpty())
+        if(textFieldFornecedor.getText().isEmpty() || datePickerDataRecebimento.toString().isEmpty() || textFieldMaterial.getText().isEmpty() || textFieldQuantidade.getText().isEmpty() || textFieldNumeroLote.getText().isEmpty())
         {
             System.out.println("Todos os campos devem ser preenchidos!");
-        }else { RecebimentoModel.insereRecebimento(textFieldFornecedor.getText(), textFieldMaterial.getText(), dataSQL,textFieldQuantidade.getText(), textFieldNumeroLote.getText()); }
+        }else {
 
+            LocalDate localDate = datePickerDataRecebimento.getValue();
 
+            Date dataSQL = Date.valueOf(localDate);
 
-
+            RecebimentoModel.insereRecebimento(textFieldFornecedor.getText(), textFieldMaterial.getText(), dataSQL,textFieldQuantidade.getText(), textFieldNumeroLote.getText());
+        }
     }
 }

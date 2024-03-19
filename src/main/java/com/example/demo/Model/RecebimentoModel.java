@@ -21,14 +21,16 @@ public class RecebimentoModel {
 
         try(Connection connection = DriverManager.getConnection(MainApplication.DATABASE_URL)) {
 
-            String sqlQuery = "INSERT into Recebimento (cod_for, cod_mat, dt_recebimento)" +
-                    "VALUES (?, ?, ?)";
+            String sqlQuery = "INSERT into Recebimento (cod_for, cod_mat, dt_recebimento, quantidade, nro_lote)" +
+                    "VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
             preparedStatement.setInt(1, parseInt(codigoFornecedor));
             preparedStatement.setString(2, material);
             preparedStatement.setDate(3, dataRecebimento);
+            preparedStatement.setInt(4, parseInt(quantidade));
+            preparedStatement.setInt(5, parseInt(numeroLote));
 
 
             int row = preparedStatement.executeUpdate();
