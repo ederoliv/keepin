@@ -9,10 +9,10 @@ import static java.lang.Integer.*;
 public class RecebimentoModel {
 
 
-    private String fornecedor, material, recebidoPor;
+    private String  material, recebidoPor;
     private Date dataRecebimento;
-    private int quantidade, numeroLote;
-    public RecebimentoModel (String fonecedor, String material, Date dataRecebimento, String recebidoPor, int quantidade, int numeroLote) {
+    private int fornecedor, quantidade, numeroLote;
+    public RecebimentoModel (int fonecedor, String material, Date dataRecebimento, String recebidoPor, int quantidade, int numeroLote) {
 
         this.fornecedor = fonecedor;
         this.material = material;
@@ -27,12 +27,12 @@ public class RecebimentoModel {
 
         try(Connection connection = DriverManager.getConnection(MainApplication.DATABASE_URL)) {
 
-            String sqlQuery = "INSERT into Recebimento (cod_for, cod_mat, dt_recebimento, quantidade, nro_lote)" +
-                    "VALUES (?, ?, ?, ?, ?)";
+            String sqlQuery = "INSERT into Recebimento (cod_for, cod_mat, dt_recebimento, recebido_por, quantidade, nro_lote)" +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
-            preparedStatement.setInt(1, parseInt(this.fornecedor));
+            preparedStatement.setInt(1, this.fornecedor);
             preparedStatement.setString(2, this.material);
             preparedStatement.setDate(3, this.dataRecebimento);
             preparedStatement.setString(4, this.recebidoPor);
