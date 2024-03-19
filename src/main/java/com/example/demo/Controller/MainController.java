@@ -39,7 +39,8 @@ private ComboBox<String> comboBoxRecebidoPor;
 
             Date dataSQL = Date.valueOf(localDate);
 
-            RecebimentoModel.insereRecebimento(textFieldFornecedor.getText(), textFieldMaterial.getText(), dataSQL,textFieldQuantidade.getText(), textFieldNumeroLote.getText());
+            //RecebimentoModel.insereRecebimento(textFieldFornecedor.getText(), textFieldMaterial.getText(), dataSQL,textFieldQuantidade.getText(), textFieldNumeroLote.getText());
+
         }
     }
 }

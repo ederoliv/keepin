@@ -8,16 +8,22 @@ import static java.lang.Integer.*;
 
 public class RecebimentoModel {
 
-    /*
-    private String fornecedor, material, numeroLote;
-    private LocalDate dataRecebimento;
-    private int quantidade;
 
-    //private recebidoPor
+    private String fornecedor, material, recebidoPor;
+    private Date dataRecebimento;
+    private int quantidade, numeroLote;
+    public RecebimentoModel (String fonecedor, String material, Date dataRecebimento, String recebidoPor, int quantidade, int numeroLote) {
 
-     */
+        this.fornecedor = fonecedor;
+        this.material = material;
+        this.dataRecebimento = dataRecebimento;
+        this.recebidoPor = recebidoPor;
+        this.quantidade = quantidade;
+        this.numeroLote = numeroLote;
 
-    public static void insereRecebimento (String codigoFornecedor, String material, Date dataRecebimento,String quantidade, String numeroLote) {
+    }
+
+    public void insereRecebimento () {
 
         try(Connection connection = DriverManager.getConnection(MainApplication.DATABASE_URL)) {
 
@@ -26,11 +32,12 @@ public class RecebimentoModel {
 
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
-            preparedStatement.setInt(1, parseInt(codigoFornecedor));
-            preparedStatement.setString(2, material);
-            preparedStatement.setDate(3, dataRecebimento);
-            preparedStatement.setInt(4, parseInt(quantidade));
-            preparedStatement.setInt(5, parseInt(numeroLote));
+            preparedStatement.setInt(1, parseInt(this.fornecedor));
+            preparedStatement.setString(2, this.material);
+            preparedStatement.setDate(3, this.dataRecebimento);
+            preparedStatement.setString(4, this.recebidoPor);
+            preparedStatement.setInt(5, this.quantidade);
+            preparedStatement.setInt(6, this.numeroLote);
 
 
             int row = preparedStatement.executeUpdate();
