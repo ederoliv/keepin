@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.MainApplication;
 import com.example.demo.Model.RecebimentoModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,8 +9,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -24,7 +24,27 @@ private ComboBox<String> comboBoxRecebidoPor;
     @Override
     public void initialize(URL location, ResourceBundle resources){
 
-        comboBoxRecebidoPor.getItems().addAll("Eder", "Sara");
+        try(Connection connection1 = DriverManager.getConnection(MainApplication.DATABASE_URL)){
+
+            String query = "SELECT nome FROM Recebedores";
+
+            Statement statement = connection1.createStatement();
+
+            try(ResultSet resultSet = statement.executeQuery(query)){
+
+            while (resultSet.next()){
+
+                comboBoxRecebidoPor.getItems().add(resultSet.getString("nome"));
+
+            }
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        //comboBoxRecebidoPor.getItems().addAll("Eder", "Sara");
 
     }
 @FXML
@@ -35,20 +55,15 @@ private ComboBox<String> comboBoxRecebidoPor;
             System.out.println("Todos os campos devem ser preenchidos!");
         }else {
 
-            LocalDate localDate = datePickerDataRecebimento.getValue();
-
-            //Date dataSQL = Date.valueOf(localDate);
-
             RecebimentoModel recebimento = new RecebimentoModel(Integer.parseInt(
                     textFieldFornecedor.getText()),
                     textFieldMaterial.getText(),
-                    Date.valueOf(localDate),
+                    Date.valueOf(datePickerDataRecebimento.getValue()),
                     comboBoxRecebidoPor.getValue(),
                     Integer.parseInt(textFieldQuantidade.getText()),
                     Integer.parseInt(textFieldNumeroLote.getText()));
 
             recebimento.insereRecebimento();
-            //(int fonecedor, String material, Date dataRecebimento, String recebidoPor, int quantidade, int numeroLote
 
         }
     }
