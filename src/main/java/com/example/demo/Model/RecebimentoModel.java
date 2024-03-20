@@ -4,10 +4,7 @@ import com.example.demo.MainApplication;
 
 import java.sql.*;
 
-import static java.lang.Integer.*;
-
 public class RecebimentoModel {
-
 
     private String  material, recebidoPor;
     private Date dataRecebimento;
@@ -48,7 +45,4 @@ public class RecebimentoModel {
             throw new RuntimeException(e);
         }
     }
-
-
-
 }

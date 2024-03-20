@@ -32,20 +32,15 @@ private ComboBox<String> comboBoxRecebidoPor;
 
             try(ResultSet resultSet = statement.executeQuery(query)){
 
-            while (resultSet.next()){
+                    while (resultSet.next()){
 
-                comboBoxRecebidoPor.getItems().add(resultSet.getString("nome"));
+                            comboBoxRecebidoPor.getItems().add(resultSet.getString("nome"));
 
-            }
-
-            }
-
-        } catch (SQLException e) {
+                    }
+                }
+            } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        //comboBoxRecebidoPor.getItems().addAll("Eder", "Sara");
-
     }
 @FXML
     public void salvaRecebimento() {
