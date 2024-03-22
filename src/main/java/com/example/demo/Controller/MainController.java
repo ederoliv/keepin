@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.sql.*;
@@ -20,6 +21,8 @@ private TextField textFieldFornecedor, textFieldMaterial,textFieldQuantidade, te
 private DatePicker datePickerDataRecebimento;
 @FXML
 private ComboBox<String> comboBoxRecebidoPor;
+@FXML
+private Text textAviso;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -47,7 +50,8 @@ private ComboBox<String> comboBoxRecebidoPor;
 
         if(textFieldFornecedor.getText().isEmpty() || datePickerDataRecebimento.toString().isEmpty() || textFieldMaterial.getText().isEmpty() || textFieldQuantidade.getText().isEmpty() || textFieldNumeroLote.getText().isEmpty())
         {
-            System.out.println("Todos os campos devem ser preenchidos!");
+
+
         }else {
 
             RecebimentoModel recebimento = new RecebimentoModel(Integer.parseInt(
