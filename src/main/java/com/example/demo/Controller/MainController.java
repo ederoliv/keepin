@@ -2,16 +2,23 @@ package com.example.demo.Controller;
 
 import com.example.demo.MainApplication;
 import com.example.demo.Model.RecebimentoModel;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.sql.*;
+import java.time.Duration;
 import java.util.ResourceBundle;
+
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class MainController implements Initializable {
 
@@ -50,6 +57,8 @@ private Text textAviso;
 
         if(textFieldFornecedor.getText().isEmpty() || datePickerDataRecebimento.toString().isEmpty() || textFieldMaterial.getText().isEmpty() || textFieldQuantidade.getText().isEmpty() || textFieldNumeroLote.getText().isEmpty())
         {
+            // Show the textAviso and schedule its disappearance after 2 seconds
+            this.textAviso.setVisible(true);
 
 
         }else {
@@ -63,6 +72,8 @@ private Text textAviso;
                     Integer.parseInt(textFieldNumeroLote.getText()));
 
             recebimento.insereRecebimento();
+
+
 
         }
     }

@@ -137,7 +137,7 @@
             </Button>
          </children>
       </Pane>
-      <Text fx:id="textAviso" fill="#fcf2f2" strokeType="OUTSIDE" strokeWidth="0.0" text="Todos os campos devem ser preenchidos!" visible="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <Text fx:id="textAviso" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Todos os campos devem ser preenchidos!" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Text>
